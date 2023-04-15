@@ -1,0 +1,225 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+#header{
+    position: fixed;
+    background-color: #F28076;
+    height: 70px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#header .header__logo{
+   margin-left: 30px;
+   margin-right: 10px ;
+   float: left;
+   padding: 5px; 
+}
+#header .header__logo .header__logo__img{
+    
+}
+.header__logo .header__logo__img img{
+    width: 60px;
+    height: 60px;
+}
+#header .header__home{
+    float: left;
+}
+#header .header__home a{
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    line-height: 70px;
+    font-weight: bold;
+} 
+#header .header__navbar{
+    float: left;
+    margin-left: 20px;
+}
+#header .header__navbar .header__navbar__nav {
+
+}
+.header__navbar .header__navbar__nav li{
+    display: inline-block;
+}
+.header__navbar__nav li i{
+
+}
+.header__navbar__nav>li>a{
+    line-height: 70px;
+    color: black;
+    text-decoration: none;
+    padding:0 16px;
+    position: relative;
+}
+.header__navbar__nav li ul{
+    position: absolute;
+    display: none; 
+}
+.header__navbar__nav li ul li{
+    display: block !important;
+    background-color: #f8bbb6;
+    line-height: 30px;
+    padding: 0px 20px 0px 20px;
+}
+.header__navbar__nav li ul li:hover{
+    background-color: #f8bbb6;
+}
+.header__navbar__nav li:hover ul {
+    display: block;
+}
+.header__navbar__nav li:hover{
+    background-color: #f8bbb6;
+    cursor: pointer;
+}
+.navar__nav__list + ul li a{
+    text-decoration: none;
+}
+#header .header__search{
+    padding: 18px;
+    float: left;
+    margin-left: 40px;
+}
+#formSearchStory{
+    height: 30px;
+}
+#formSearchStory input{
+    position: relative;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+}
+#formSearchStory input i{
+    position: absolute;
+    right:0;
+    top:10px
+}
+#header .header__User{
+    float: right;
+    margin-right: 70px;
+}
+.header__User .header__User__signUp{
+
+}
+.header__User .header__User__signUp a{
+    line-height: 70px; 
+    color: black;
+    text-decoration: none;
+}
+.header__User__signUp a i{
+    margin-left: 20px;
+}
+#container{
+    display: block;
+    float: left;
+    width: 1346.47px;
+    margin-top: 70px;
+    padding-left: 70px;
+    background: url('../images/images(8).jpg')  no-repeat ;
+    background-size: 100vw 100vh ,cover;
+    /* min-height: 600px;
+    margin-top: 70px; */
+    /* width: 1346.47px; */
+}
+#container .container__information{
+    min-height: 600px;
+    float: left;
+    width: 800px;
+}
+#container .container__information h1{
+    margin: 20px 0px;
+    line-height: 50px;
+    font-weight: bold;
+}
+.container__information .container__information__intro{
+
+}
+.container__information__intro .information__intro__basic{
+    display: block;
+    float: left;
+}
+.container__information__intro .information__intro__basic a{
+
+}
+.information__intro__basic a img{
+    height: 400px;
+    width: 260px;
+}
+.container__information__intro .information__intro__text{
+    margin-left: 300px;
+    text-align: justify;
+}
+.container__information__intro .information__intro__text h2{
+    line-height: 40px;
+}
+.container__information__intro .information__intro__text p{
+    line-height: 24px;
+    font-size: 20px;
+}
+#container .container__recommend{
+    float: right;
+    width: 400px;
+    min-height: 600px;
+    margin: 20px 20px 0px 30px;
+    background-color: transparent;
+    display: inline;
+    border: 1px solid black;
+}
+#container .container__recommend h1{
+    display:block;
+    line-height: 50px;
+    margin-left: 30px;
+    margin-bottom: 16px;
+}
+.container__recommend a{
+    display: block;
+    text-decoration: none;
+    line-height: 28px;
+    margin: 10px 20px 0px 36px;
+    padding-left: 10px;
+    border: 1px solid black;
+    font-size: 16px;
+    background-color: transparent;
+    color: #000;
+}
+#container .container__listchapter{
+    display: block;
+    /* float: left; */
+}
+#container .container__listchapter h2{
+    line-height: 80px;
+}
+#container .container__listchapter .container__listchapter__list{
+
+}
+.container__listchapter .container__listchapter__list a{
+    display: block;
+    text-decoration: none;
+    line-height: 28px;
+    font-size: 24px;
+    margin-left: 20px;
+    color: #000;
+}
+#footer{
+    float: left;
+    display: block;
+    position: relative;
+    top: 100px;
+}
+#footer .footer__information{
+    display: block;
+    margin: 50px 0px 0px 30px;
+}
+#footer .footer__information p{
+    width: 500px;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+
+
+
+
+

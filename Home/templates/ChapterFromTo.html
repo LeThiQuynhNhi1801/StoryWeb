@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách truyện hot</title>
+    <link rel="stylesheet" href="/static/css/chapterfromto.css">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+</head>
+<body>
+    <div id="header">
+        <div class="header__logo">
+            <div class="header__logo__img">
+                <img src="https://i.pinimg.com/736x/34/e4/c1/34e4c16dd7d9d9bad3e731a354daabb2.jpg" alt="">
+            </div>
+        </div>
+        <div class="header__home">
+            <a href="/index">DOCTRUYEN</a>
+        </div>
+        <div class="header__navbar">
+            <ul class="header__navbar__nav">
+                <li>
+                    <a class="navar__nav__list" href=""><i class="fas fa-th-list"></i>
+                        DANH SÁCH 
+                    </a>
+                    <ul id="listStoryByIdCategory">
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Ngôn tình</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="navar__nav__list" href=""><i class="fas fa-th-list"></i>
+                        PHÂN LOẠI THEO CHƯƠNG
+                    </a>
+                    <ul id="chapterfromto">
+                        <li><a href="/ChapterFromTo?To=10">Dưới 10 chương</a></li>
+                        <li><a href="/ChapterFromTo?From=10&&To=20">Trên 10 chương-20 chương </a></li>
+                        <li><a href="/ChapterFromTo?From=20&&To=30">Trên 20 chương-30 chương </a></li>
+                        <li><a href="/ChapterFromTo?From=30">Trên 30 chương</a></li>
+                    </ul>
+                    
+                </li>
+                <li>
+                    <a class="navar__nav__list" href=""><i class="fas fa-th-list"></i>
+                        THÊM
+                    </a>
+                    <ul id='role'>
+                        <li><a href="">nhi hiền lành</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="header__search">
+            <div action="" id="formSearchStory">
+                <input onkeyup="search()" type="search" id="searchStory" name="searchStory" placeholder="Tìm kiếm...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div class="header__User">
+            <div class="header__User__signUp" id="signup">
+                <a href="login">ĐĂNG NHẬP<i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+    <div id="body">
+        <div class="body__hot" > 
+            <div class="body__hot__hotlist" id = "categoryName">
+                <a href="">PHÂN LOẠI THEO CHƯƠNG</a>
+            </div>
+            <div class="body__hot__list">
+                <ul id="listStory">
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="body__recommend" id="recommend">
+            <h1>Có thể bạn thích ? </h1>
+            <a href="">truyện 1 Nhi hiền lành</a>
+            <a href="">truyện 2 Nhi hiền lành</a>
+            <a href="">truyện 3 Nhi hiền lành</a>
+            <a href="">truyện 4 Nhi hiền lành</a>
+            <a href="">truyện 5 Nhi hiền lành</a>
+            <a href="">truyện 6 Nhi hiền lành</a>
+            <a href="">truyện 7 Nhi hiền lành</a>
+            <a href="">truyện 8 Nhi hiền lành</a>
+            <a href="">truyện 9 Nhi hiền lành</a>
+            <a href="">truyện 10 Nhi hiền lành</a>
+        </div>        
+    </div>
+    <div id="footer">
+        <div class="footer__information">
+            <p><b>DOCTRUYEN</b>:  Đọc truyện online, đọc truyện chữ, truyện hay. Website luôn cập nhật những bộ truyện mới thuộc các thể loại đặc sắc như truyện tiên hiệp, truyện kiếm hiệp, hay truyện ngôn tình một cách nhanh nhất. Hỗ trợ mọi thiết bị như di động và máy tính bảng.</p>
+        </div>
+    </div>
+
+</body>
+<script src="/static/js/base.js"></script>
+<script src="/static/js/chapterfromto.js"> 
+</script>
+</html>

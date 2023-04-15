@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ĐĂNG TRUYỆN</title>
+    <link rel="stylesheet" href="../static/css/upstory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+</head>
+<body>
+    <div id="header">
+        <div class="header__logo">
+            <div class="header__logo__img">
+                <img src="https://i.pinimg.com/736x/34/e4/c1/34e4c16dd7d9d9bad3e731a354daabb2.jpg" alt="">
+            </div>
+        </div>
+        <div class="header__home">
+            <a href="/index">DOCTRUYEN</a>
+        </div>
+        <div class="header__navbar">
+            <ul class="header__navbar__nav">
+                <li>
+                    <a class="navar__nav__list" href=""><i class="fas fa-th-list"></i>
+                        DANH SÁCH 
+                    </a>
+                    <ul id = "listStoryByIdCategory">
+                        <li><a href="">Ngôn tình</a></li>
+                        <li><a href="">Đam mỹ</a></li>
+                        <li><a href="">Xuyên không</a></li>
+                        <li><a href="">Ngược</a></li>
+                        <li><a href="">Trọng sinh</a></li>
+                        <li><a href="">Đô thị</a></li>
+                        <li><a href="">Điền văn</a></li>
+                        <li><a href="">Sắc</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="navar__nav__list" href=""><i class="fas fa-th-list"></i>
+                        PHÂN LOẠI THEO CHƯƠNG
+                    </a>
+                    <ul>
+                        <li><a href="/ChapterFromTo?To=10">Dưới 10 chương</a></li>
+                        <li><a href="/ChapterFromTo?From=10&&To=20">Trên 10 chương-20 chương </a></li>
+                        <li><a href="/ChapterFromTo?From=20&&To=30">Trên 20 chương-30 chương </a></li>
+                        <li><a href="/ChapterFromTo?From=30">Trên 30 chương</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="navar__nav__list" href=""><i class="fas fa-th-list"></i>
+                        THÊM
+                    </a>
+                    <ul id="role">
+                        <li><a href=""></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="header__search">
+            <div action="" id="formSearchStory">
+                <input onkeyup="search()" type="search" id="searchStory" name="searchStory" placeholder="Tìm kiếm...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div class="header__User">
+            <div class="header__User__signUp" id="signup">
+                <a href="login">ĐĂNG NHẬP<i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div class="container__new">
+            <a href="/writenew">TRUYỆN MỚI</a>
+        </div>
+        <div class="container__list">
+            <ul id="listStory">
+                <li>
+                    <a href="">ahfjhwekwairetioaeuriowe</a>
+                    <button onclick="Signup()">THÊM CHƯƠNG</button>
+                </li>
+                <li>
+                    <a href="">ahfjhwekwairetioaeuriowe</a>
+                    <button onclick="Signup()">THÊM CHƯƠNG</button>
+                </li>
+                <li>
+                    <a href="">ahfjhwekwairetioaeuriowe</a>
+                    <button onclick="Signup()">THÊM CHƯƠNG</button>
+                </li>
+                <li>
+                    <a href="">ahfjhwekwairetioaeuriowe</a>
+                    <button onclick="Signup()">THÊM CHƯƠNG</button>
+                </li>
+                <li>
+                    <a href="">ahfjhwekwairetioaeuriowe</a>
+                    <button onclick="Signup()">THÊM CHƯƠNG</button>
+                </li>
+                <li>
+                    <a href="">ahfjhwekwairetioaeuriowe</a>
+                    <button onclick="Signup()">THÊM CHƯƠNG</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="./static/js/base.js"></script>
+<script src="./static/js/upstory.js"></script>
+</html>    

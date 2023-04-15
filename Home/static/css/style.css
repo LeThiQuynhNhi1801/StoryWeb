@@ -1,0 +1,204 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+#header{
+    position: fixed;
+    background-color: #F28076;
+    height: 70px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#header .header__logo{
+   margin-left: 30px;
+   margin-right: 10px ;
+   float: left;
+   padding: 5px; 
+}
+#header .header__logo .header__logo__img{
+    
+}
+.header__logo .header__logo__img img{
+    width: 60px;
+    height: 60px;
+}
+#header .header__home{
+    float: left;
+}
+#header .header__home a{
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    line-height: 70px;
+    font-weight: bold;
+} 
+#header .header__navbar{
+    float: left;
+    margin-left: 20px;
+}
+#header .header__navbar .header__navbar__nav {
+
+}
+.header__navbar .header__navbar__nav li{
+    display: inline-block;
+}
+.header__navbar__nav li i{
+
+}
+.header__navbar__nav>li>a{
+    line-height: 70px;
+    color: black;
+    text-decoration: none;
+    padding:0 16px;
+    position: relative;
+}
+.header__navbar__nav li ul{
+    position: absolute;
+    display: none; 
+}
+.header__navbar__nav li ul li{
+    display: block !important;
+    background-color: #f8bbb6;
+    line-height: 30px;
+    padding: 0px 20px 0px 20px;
+}
+.header__navbar__nav li ul li:hover{
+    background-color: #f8bbb6;
+}
+.header__navbar__nav li:hover ul {
+    display: block;
+}
+.header__navbar__nav li:hover{
+    background-color: #f8bbb6;
+    cursor: pointer;
+}
+.navar__nav__list + ul li a{
+    text-decoration: none;
+}
+#header .header__search{
+    padding: 18px;
+    float: left;
+    margin-left: 40px;
+}
+#formSearchStory{
+    height: 30px;
+}
+#formSearchStory input{
+    position: relative;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+}
+#formSearchStory input i{
+    position: absolute;
+    right:0;
+    top:10px
+}
+#header .header__User{
+    float: right;
+    margin-right: 70px;
+}
+.header__User .header__User__signUp{
+
+}
+.header__User .header__User__signUp a{
+    line-height: 70px; 
+    color: black;
+    text-decoration: none;
+}
+.header__User__signUp a i{
+    margin-left: 20px;
+}
+#body{
+    float: left;
+    display: block;
+    background: url('../images/images(8).jpg')  no-repeat ;
+    background-size: 100vw 100vh ,cover;
+    min-height: 600px;
+    margin-top: 70px;
+    /* width: 1346.47px; */
+}
+#body .body__hot{
+    float: left;
+    min-height: 600px;
+    width: 800px;
+    background-color: transparent;
+    margin: 20px 0px 0px 80px;
+    padding-bottom: 20px;
+    border: 1px solid black;
+}
+#body .body__hot .body__hot__hotlist{
+    height: 50px;
+    margin-left: 30px;
+}
+.body__hot .body__hot__hotlist a{
+    text-decoration: none;
+    line-height: 50px;
+    color: black;
+    font-size: 26px;
+    font-weight: bold;
+}
+.body__hot .body__hot__top{
+    float: left;
+    padding: 20px 30px 0px 32px;
+    max-width: 33%;
+}
+.body__hot__top a:first-child{
+    display: block;
+}
+.body__hot__top a img{
+    height: 360px;
+    width: 200px;
+}
+.body__hot__top a:last-child{
+    text-decoration: none;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+#body .body__recommend{
+    float: right;
+    width: 400px;
+    min-height: 600px;
+    margin: 20px 20px 0px 30px;
+    background-color:  transparent;
+    border: 1px solid black;
+}
+#body .body__recommend h1{
+    display:block;
+    line-height: 50px;
+    margin-left: 30px;
+    margin-bottom: 16px;
+}
+.body__recommend a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    line-height: 28px;
+    margin: 10px 20px 0px 30px;
+    padding-left: 10px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 1px solid black;
+}
+#footer{
+    float: left;
+    display: block;
+    position: relative;
+    top: 100px;
+}
+#footer .footer__information{
+    display: block;
+    margin: 50px 0px 0px 30px;
+}
+#footer .footer__information p{
+    width: 500px;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+

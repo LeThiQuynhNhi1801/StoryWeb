@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ĐĂNG KÍ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="./static/css/signup.css">
+    <script src="./static/js/signup.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="container__login">
+            <div class="container__login__header">
+                <h1>ĐĂNG KÍ</h1>
+            </div>
+            <div class="container__login__body">
+                <div  class="container__body__formLogin">
+                    <div class="formLogin__input">
+                        <input type="text" id="userName" placeholder="Tài Khoản"><i class="fas fa-user"></i>
+                    </div>
+                    <div class="formLogin__input">
+                        <input type="text" id="password" placeholder="Mật khẩu"><i class="fas fa-key"></i>
+                    </div>
+                    <div class="formLogin__input">
+                        <input type="text" id="resetPassword" placeholder=" Nhập Lại Mật khẩu"><i class="fas fa-key"></i>
+                    </div>
+                    
+                    <div id="error__signup">
+                        
+                    </div>
+                    <div class="formLogin__input">
+                        <button onclick="Signup()">ĐĂNG KÍ</button>
+                    </div>
+                </div>
+                <div class="container__body__userSetup">
+                        <a href="login">Đăng Nhập</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
