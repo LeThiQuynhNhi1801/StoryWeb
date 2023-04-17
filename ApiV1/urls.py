@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Search,Login,Signup,HotList,StoryByID,Recommend,StoryByIDCategory,ChapterByIdChapter,ListStory,ListChapterByStoryID,listCategory,listRole,ChapterFromTo,StoryByAuthor,Delete
+from .views import Search,Login,Signup,HotList,StoryByID,Recommend,StoryByIDCategory,ChapterByChapterNumber,ListStory,ListChapterByStoryID,listCategory,listRole,ChapterFromTo,StoryByAuthor,Delete,Historys
 
 urlpatterns = [
     path('login',Login.as_view()),
@@ -11,7 +11,7 @@ urlpatterns = [
     path('StoryByIdUser',Recommend.as_view()),
     path('intro/<int:StoryID>',StoryByID.as_view()),
     path('StoryByIDCategory/<int:CategoryID>',StoryByIDCategory.as_view()),
-    path('read/<int:ChapterID>',ChapterByIdChapter.as_view()),
+    path('read/<int:StoryID>/<int:chapternumber>',ChapterByChapterNumber.as_view()),
     path('ListChapterByStoryID/<int:StoryID>',ListChapterByStoryID.as_view()),
     path('listCategory',listCategory.as_view()),
     path('RoleByIdUser',listRole.as_view()),
@@ -20,6 +20,6 @@ urlpatterns = [
     path('search/<str:key>',Search.as_view()),
     path('upstory',StoryByAuthor.as_view()),
     path('delete/<int:StoryID>',Delete.as_view()),
-
+    path('history/<int:StoryID>/<int:chapternumber>',Historys.as_view())
 
 ]

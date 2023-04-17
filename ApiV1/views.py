@@ -77,9 +77,11 @@ class Recommend(APIView):
             cursor.execute('SELECT entity_category.id,entity_story.id, count(entity_category.id) FROM entity_history join entity_chapter on entity_chapter.id=entity_history.Chapter_id join entity_story on entity_story.id=entity_chapter.Story_id join entity_categorystory on entity_story.id=entity_categorystory.Story_id join entity_category on entity_category.id=entity_categorystory.Category_id where entity_history.User_id='+str(userID)+'  group by entity_category.id,entity_story.id')
             rows = cursor.fetchall()
             a = []
+            print(rows)
             for i in range(len(rows)):
                 a.append(rows[i][0])
         story=[]
+        
         try:
             categoryStorys= CategoryStory.objects.filter(Category__id=max(set(a),key = a.count))
             story= [{"id":categoryStory.Story.id,"StoryName":categoryStory.Story.StoryName,'CoverImage':categoryStory.Story.CoverImage} for categoryStory in categoryStorys ]
@@ -97,17 +99,26 @@ class StoryByIDCategory(APIView):
         return HttpResponse(json.dumps(story),status=200)
 class ChapterByIdChapter(APIView):
     def get(self,request,ChapterID):
-        chapterQuery = Chapter.objects.get(pk=ChapterID)
-        chapter = {"id":chapterQuery.id,"StoryName":chapterQuery.Story.StoryName,"ChapterName":chapterQuery.ChapterName,"ChapterNumber":chapterQuery.ChapterNumber,"Content":chapterQuery.ContentStory}
+        chapterQuery = Chapter.objects.get(pk=ChapterID)    
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT entity_chapter.Story_id, Count(entity_chapter.Story_id) from entity_chapter where  entity_chapter.Story_id='+str(chapterQuery.Story.id)+' group by entity_chapter.Story_id')
+            rows = cursor.fetchall()
+            print(rows)
+            a = rows[0][1]
+            print(a)
+            # for i in range(len(rows)):
+            #     a.append({"idRole":rows[i][0],"RoleName":rows[i][1]})
+        chapter = {"id":chapterQuery.id,"ids":chapterQuery.Story.id,"StoryName":chapterQuery.Story.StoryName,"ChapterName":chapterQuery.ChapterName,"ChapterNumber":chapterQuery.ChapterNumber,"Content":chapterQuery.ContentStory,"count":a}
         print(chapter)
         return HttpResponse(json.dumps(chapter),status=200)
 class ListChapterByStoryID(APIView):
     def get(self,request,StoryID):
         chapterQuery = Chapter.objects.filter(Story__pk=StoryID)
+        
         chapter = []    
         for i in chapterQuery:
-            chapter.append({"id":i.pk,"ChapterNumber":i.ChapterNumber,"ChapterName":i.ChapterName,"Content":i.ContentStory})
-        print(chapter)    
+            chapter.append({"id":i.pk,"ids":i.Story.pk,"ChapterNumber":i.ChapterNumber,"ChapterName":i.ChapterName,"Content":i.ContentStory})
         return HttpResponse(json.dumps(chapter),status=200)        
 class listCategory(APIView):
     def get(self,request):
@@ -171,9 +182,61 @@ class Delete(APIView):
     def delete(self,request,StoryID):
         print(StoryID)
         story = Story.objects.get(pk=StoryID)
-        print(story)
+        # print(story)
         story.delete()
         return HttpResponse(json.dumps({"massage":'Đã xoá thành công !'}),status=204)
 # class Post(APIView):
 #     def post(self,request):
+class Historys(APIView):
+    def post(self,request,StoryID,chapternumber):
+        userID=request.headers['userID']
+        try:
+            print('ahiih')
+            historyQuery = History.objects.get(User_id=userID,Chapter__ChapterNumber=chapternumber)
+            return HttpResponse(json.dumps({"massage":'tồn tại'}),status=409)
+        except:
+            userid = User.objects.get(pk=userID)
+            chapterid = Chapter.objects.get(ChapterNumber=chapternumber,Story_id=StoryID)
+            newHistory = History(Chapter=chapterid,User=userid)
+            newHistory.save()
+            return HttpResponse(json.dumps({"massage":'lưu lịch sử'}),status=200)
+class ChapterByChapterNumber(APIView):
+    def get(self,request,StoryID,chapternumber):
+        chapterQuery = Chapter.objects.get(Story_id=StoryID,ChapterNumber=chapternumber)
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT entity_chapter.Story_id, Count(entity_chapter.Story_id) from entity_chapter where  entity_chapter.Story_id='+str(chapterQuery.Story.id)+' group by entity_chapter.Story_id')
+            rows = cursor.fetchall()
+            print(rows)
+            a = rows[0][1]
+            print(a)
+        chapter = {"id":chapterQuery.id,"ids":chapterQuery.Story.id,"StoryName":chapterQuery.Story.StoryName,"ChapterName":chapterQuery.ChapterName,"ChapterNumber":chapterQuery.ChapterNumber,"Content":chapterQuery.ContentStory,"count":a}
+        return HttpResponse(json.dumps(chapter),status=200)
+class PostNewStory(APIView):
+    def post(self,request):
+        # print(request.data)
+        # if  'username' not in request.data:
+        #     return HttpResponse(json.dumps({"massage":"nhap tk di"}),status=400)
+        # userName = request.data['username']
+        
+        # try:
+        #     User.objects.get(UserName=userName)
+        #     return HttpResponse(json.dumps({"massage":"usernam da ton tai"}),status=409)
+        # except:
+        #     if  'password' not in request.data:
+        #         return HttpResponse(json.dumps({"massage":"nhap pass di"}),status=400)    
+        #     password = request.data['password']
+        #     newUser =User(UserName=userName,Password=password)
+        #     role=Role.objects.get(pk=2)
+        #     newUser.save()
+        #     newRole=UserRole(Role=role,User=newUser)
+        #     newRole.save()
+        storyname = request.data['storyName']
+        author = request.data['auThor']
+        source = request.data['source']
+        status = request.data['status']
+        description = request.data['description']
+        nameChapter1 = request.data['password']
+        contentchapter1 = request.data['password']
+        
 

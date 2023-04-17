@@ -5,7 +5,7 @@ def Login(request):
     return render(request,'login.html')
 def Index(request):
     return render(request,'index.html')
-def Read(request,ChapterID):
+def Read(request,StoryID,chapternumber):
     return render(request,'read.html')
 def Intro(request,StoryID):
     return render(request,'intro.html')
@@ -27,3 +27,5 @@ def Search(request,key):
 #     return render(request,'')
 def New(request):
     return render(request,'writenew.html')
+def NewChapter(request):
+    return render(request,'writenewchapter.html')

@@ -71,47 +71,68 @@
     </div>
     <div id="container">
         <div class="container__info">
-            <div class="container__info__e">
-                <input type="text" id="storyName" placeholder="Nhập tên truyện">
+            <div class="container__info__main">
+                <div class="container__info__left">
+                    <div class="container__info__e">
+                        <input type="text" id="storyName" placeholder="Nhập tên truyện">
+                    </div>
+                    <div class="container__info__e">
+                        <input type="text" id="author" placeholder="Tác giả">
+                    </div>
+                    <div class="container__info__e">
+                        <input type="text" id="source" placeholder="Nguồn">
+                    </div>
+                    <div class="container__info__e">
+                        <input type="text" id="status" placeholder="Trạng thái">
+                    </div>
+                    <textarea id="description" name="description" rows="" cols="" placeholder="Nhập văn án "></textarea>
+                    <div class="container__info__e">
+                        <input type="text" id="chapter1" placeholder="Tên chương 1 :">
+                    </div>
+                </div>
+                <div class="container__info__right">
+                    <div class="container__info__e">
+                        <div name="Thể loại" >Thể loại : </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="ngontinh" name="Ngôn tình">
+                            <label for="ngontinh" name="Thể loại" >Ngôn tình</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="dammy" name="Đam mỹ">
+                            <label for="dammy" name="Thể loại" >Đam mỹ</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="dienvan" name="Điền văn">
+                            <label for="dienvan" name="Thể loại" >Điền văn</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="nguoc" name="Ngược">
+                            <label for="nguoc" name="Thể loại" >Ngược</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="dothi" name="Đô thị">
+                            <label for="dothi" name="Thể loại" >Đô thị</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="trongsinh" name="Trọng sinh">
+                            <label for="trongsinh" name="Thể loại" >Trọng sinh</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="xuyenkhong" ="Xuyên không">
+                            <label for="xuyenkhong" name="Thể loại" >Xuyên không</label>
+                        </div>
+                        <div class="select">
+                            <input type="checkbox" class="description" id="sac" name="Sắc">
+                            <label for="sac" name="Thể loại" >Sắc</label>
+                        </div>
+                    </div>
+                </div>   
             </div>
-            <div class="container__info__e">
-                <input type="text" id="author" placeholder="Tác giả">
+            <div class="container__info__Chapter">
+                <textarea id="content" name="description" rows="" cols="" placeholder="Nội dung chương 1"></textarea>
             </div>
-            <div class="container__info__e">
-                <input type="text" id="source" placeholder="Nguồn">
-            </div>
-            <div class="container__info__e">
-                <input type="text" id="status" placeholder="Trạng thái">
-            </div>
-            <textarea id="description" name="description" rows="" cols=""></textarea>
-            <div class="container__info__e">
-                <label for="description" name="Thể loại" >Thể loại : </label>
-                <input type="checkbox" class="description" id="ngontinh" name="Ngôn tình">
-                <label for="ngontinh" name="Thể loại" >Ngôn tình</label>
-
-                <input type="checkbox" class="description" id="dammy" name="Đam mỹ">
-                <label for="dammy" name="Thể loại" >Đam mỹ</label>
-
-                <input type="checkbox" class="description" id="dienvan" name="Điền văn">
-                <label for="dienvan" name="Thể loại" >Điền văn</label>
-
-                <input type="checkbox" class="description" id="nguoc" name="Ngược">
-                <label for="nguoc" name="Thể loại" >Ngược</label>
-
-                <input type="checkbox" class="description" id="dothi" name="Đô thị">
-                <label for="dothi" name="Thể loại" >Đô thị</label>
-
-                <input type="checkbox" class="description" id="trongsinh" name="Trọng sinh">
-                <label for="trongsinh" name="Thể loại" >Trọng sinh</label>
-
-                <input type="checkbox" class="description" id="xuyenkhong" ="Xuyên không">
-                <label for="xuyenkhong" name="Thể loại" >Xuyên không</label>
-
-                <input type="checkbox" class="description" id="sac" name="Sắc">
-                <label for="sac" name="Thể loại" >Sắc</label>
-            </div>
-            <div class="container__info__e">
-                <input type="text" id="description" placeholder="Chương 1 ...">
+            <div class="container__info__Submit">
+                <button>ĐĂNG</button>
             </div>
         </div>  
     </div>

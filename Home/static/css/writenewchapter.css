@@ -123,6 +123,7 @@
     flex-wrap: wrap;
     background: url('../images/images(8).jpg')  no-repeat ;
     background-size: 100vw 100vh ,cover;
+    height: 200px;
 }
 
 .container__info__main .container__info__left{
@@ -130,6 +131,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
 }
 .container__info__left .container__info__e{
     width: 80%;

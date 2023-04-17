@@ -1,3 +1,4 @@
+
 Intro();
 function Intro(){
     
@@ -98,7 +99,7 @@ function ListChapter(){
                 var s = document.getElementById('listchapter');
                 var s1 = '';
                 for( var i=0;i<response.length;i++){
-                    s1+='<a href="/read/'+response[i]['id']+'">Chương '+response[i]['ChapterNumber']+': '+response[i]['ChapterName']+'</a>';
+                    s1+='<a href="/read/'+response[i]['ids']+'/'+response[i]['ChapterNumber']+'">Chương '+response[i]['ChapterNumber']+': '+response[i]['ChapterName']+'</a>';
                 }
                 s.innerHTML=s1;
             }
