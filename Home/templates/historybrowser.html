@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viết truyện mới</title>
-    <link rel="stylesheet" href="/static/css/writenewchapter.css">
+    <title>CÀI ĐẶT</title>
+    <link rel="stylesheet" href="./static/css/historybrowser.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 </head>
@@ -65,37 +65,38 @@
         </div>
         <div class="header__User">
             <div class="header__User__signUp" id="signup">
-                <a href="/login">ĐĂNG NHẬP<i class="fas fa-user"></i></a>
+                <a href="login">ĐĂNG NHẬP<i class="fas fa-user"></i></a>
             </div>
         </div>
     </div>
     <div id="container">
-        <div class="container__info" id="information">
-            <div class="container__info__main">
-                <h3>Story Name</h3>
-                <div class="container__info__left">
-                    <div class="container__info__e">
-                        <input type="text" id="status" placeholder="Trạng thái">
-                    </div>
-                    <div class="container__info__e">
-                        <input type="text" id="chaptername" placeholder="">
-                    </div>
-                </div>  
-            </div>
-            <div class="container__info__Chapter">
-                <textarea id="content" name="description" rows="" cols="" placeholder=""></textarea>
-            </div>
-            <div class="container__info__Submit">
-                <button onclick="PostNewChapter()">ĐĂNG</button>
-            </div>
-        </div>  
-    </div>
-    <div id="footer">
-        <div class="footer__information">
-            <p><b>DOCTRUYEN</b>:  Đọc truyện online, đọc truyện chữ, truyện hay. Website luôn cập nhật những bộ truyện mới thuộc các thể loại đặc sắc như truyện tiên hiệp, truyện kiếm hiệp, hay truyện ngôn tình một cách nhanh nhất. Hỗ trợ mọi thiết bị như di động và máy tính bảng.</p>
+        <div class="container_historybrowser" id="browser">
+            {% comment %} <a href="/historybrowser">LỊCH SỬ DUYÊT</a> {% endcomment %}
+        </div>    
+        <div class="container__list">
+            <h4>Danh sách đã duyệt :</h4>
+            <ul id="listStory">
+                <li>
+                    <a></a>
+                    <button onclick="">XOÁ</button>
+                    <p>Đã duyệt ngày : </p>
+                </li>
+            </ul>
+        </div>
+        <div class="container__listdelete">    
+            <h4>Danh sách đã xoá :</h4>
+            <ul id="listStorydelete">
+                <li>
+                    <a></a>
+                    <button onclick="">XOÁ VĨNH VIỄN</button>
+                    <button onclick="">KHÔI PHỤC</button>
+                    <p>Đã xoá ngày : </p>
+                </li>
+            </ul>
         </div>
     </div>
 </body>
 <script src="/static/js/base.js"></script>
-<script src="/static/js/writenewchapter.js"></script>
-</html>
+<script src="./static/js/historybrowser.js"></script>
+</html>    
+    

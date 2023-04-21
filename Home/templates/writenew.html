@@ -92,38 +92,41 @@
                 </div>
                 <div class="container__info__right">
                     <div class="container__info__e">
-                        <div name="Thể loại" >Thể loại : </div>
+                        <div>Thể loại : </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="ngontinh" name="Ngôn tình">
-                            <label for="ngontinh" name="Thể loại" >Ngôn tình</label>
+                            <input type="checkbox" class="description" value="1" name="type">
+                            <label for="ngontinh"  >Ngôn tình</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="dammy" name="Đam mỹ">
-                            <label for="dammy" name="Thể loại" >Đam mỹ</label>
+                            <input type="checkbox" class="description" value="2" name="type">
+                            <label for="dammy"  >Đam mỹ</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="dienvan" name="Điền văn">
-                            <label for="dienvan" name="Thể loại" >Điền văn</label>
+                            <input type="checkbox" class="description" value="3" name="type">
+                            <label for="dienvan"  >Điền văn</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="nguoc" name="Ngược">
-                            <label for="nguoc" name="Thể loại" >Ngược</label>
+                            <input type="checkbox" class="description" value="3" name="type">
+                            <label for="nguoc"  >Ngược</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="dothi" name="Đô thị">
-                            <label for="dothi" name="Thể loại" >Đô thị</label>
+                            <input type="checkbox" class="description" value="5" name="type" >
+                            <label for="dothi" >Đô thị</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="trongsinh" name="Trọng sinh">
-                            <label for="trongsinh" name="Thể loại" >Trọng sinh</label>
+                            <input type="checkbox" class="description" value="6" name="type">
+                            <label for="trongsinh"  >Trọng sinh</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="xuyenkhong" ="Xuyên không">
-                            <label for="xuyenkhong" name="Thể loại" >Xuyên không</label>
+                            <input type="checkbox" class="description" value="7"  name="type" >
+                            <label for="xuyenkhong" >Xuyên không</label>
                         </div>
                         <div class="select">
-                            <input type="checkbox" class="description" id="sac" name="Sắc">
-                            <label for="sac" name="Thể loại" >Sắc</label>
+                            <input type="checkbox" class="description" value="8"   name="type" >
+                            <label for="sac">Sắc</label>
+                        </div>
+                        <div class="container__info__e">
+                            <input type="file" id="coverimg">
                         </div>
                     </div>
                 </div>   
@@ -132,7 +135,7 @@
                 <textarea id="content" name="description" rows="" cols="" placeholder="Nội dung chương 1"></textarea>
             </div>
             <div class="container__info__Submit">
-                <button>ĐĂNG</button>
+                <button onclick="upnewStory()">ĐĂNG</button>
             </div>
         </div>  
     </div>
@@ -143,5 +146,5 @@
     </div>
 </body>
 <script src="./static/js/base.js"></script>
-<script src="./static/js/writenew.js"></script>
+<script src="/static/js/writenew.js"></script>
 </html>

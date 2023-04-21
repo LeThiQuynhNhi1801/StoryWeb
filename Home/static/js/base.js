@@ -36,7 +36,7 @@ function role(){
             var s1= '';
             
             if (response[0]['idRole']==1){
-                s1+='<li><a href="/setting">CÀI ĐẶT</a></li>';
+                s1+='<li><a href="/setting">DUYỆT TRUYỆN</a></li>';
                 s1+='<li><a href="/upstory">ĐĂNG TRUYỆN</a></li>';
             }
             else{
@@ -62,3 +62,14 @@ function search(){
         window.location='/search/'+s1;
     }
 }
+if(localStorage.getItem('userID')==null){
+    window.location='/login';
+} else{
+    userID=null;
+    var a=document.getElementById('signup');
+    var a1='<a href="login" oncick="logout()">ĐĂNG XUẤT<i class="fas fa-user"></i></a>';
+    a.innerHTML=a1;
+}
+function logout(){
+    window.localStorage.removeItem('userID');
+} 

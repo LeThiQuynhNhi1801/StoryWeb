@@ -5,3 +5,4 @@ class Chapter(models.Model):
     ChapterNumber = models.IntegerField()
     ChapterName = models.CharField(max_length=225)
     ContentStory = models.TextField(max_length=225)
+    DayUpDate = models.DateTimeField(null=True)

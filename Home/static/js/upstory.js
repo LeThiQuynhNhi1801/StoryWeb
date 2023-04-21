@@ -13,7 +13,14 @@ function Upstory(){
         var s1 = document.getElementById('listStory');
         var s1Html ='';
         for(var i=0;i<response.length;i++){
-            s1Html+='<li><a href="/intro/'+response[i]['id']+'">'+response[i]['StoryName']+'</a><button onclick="">THÊM CHƯƠNG</button></li>';
+            var a='';
+            if(response[i]['check']==0){
+                a+="Chưa được duyệt";
+            }
+            else{
+                a+='Đã được duyệt ngày : '+response[i]['daybrowser'].substring(0,11);
+            }
+            s1Html+='<li><a href="/intro/'+response[i]['id']+'">'+response[i]['StoryName']+' :'+response[i]['count']+' chương'+'</a><a href="/writenewchapter/'+response[i]['id']+'">THÊM CHƯƠNG</a><a href="/listchapter/'+response[i]['id']+'">CHỈNH SỬA</a><p>'+a+'</p></li>';
         }
         s1.innerHTML=s1Html;
     }

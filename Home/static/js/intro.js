@@ -111,14 +111,14 @@ function ListChapter(){
         //gửi
         xhttp.send();
 }
-if(localStorage.getItem('userID')==null){
-    window.location='/login';
-} else{
-    userID=null;
-    var a=document.getElementById('signup');
-    var a1='<a href="login" oncick="logout()">ĐĂNG XUẤT<i class="fas fa-user"></i></a>';
-    a.innerHTML=a1;
-}
-function logout(){
-    window.localStorage.removeItem('userID');
-} 
+// if(localStorage.getItem('userID')==null){
+//     window.location='/login';
+// } else{
+//     userID=null;
+//     var a=document.getElementById('signup');
+//     var a1='<a href="login" oncick="logout()">ĐĂNG XUẤT<i class="fas fa-user"></i></a>';
+//     a.innerHTML=a1;
+// }
+// function logout(){
+//     window.localStorage.removeItem('userID');
+// } 

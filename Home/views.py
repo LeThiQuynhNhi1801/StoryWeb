@@ -27,5 +27,32 @@ def Search(request,key):
 #     return render(request,'')
 def New(request):
     return render(request,'writenew.html')
-def NewChapter(request):
+def NewChapter(request,StoryID):
     return render(request,'writenewchapter.html')
+def HistoryBrowser(request):
+    return render(request,'historybrowser.html')
+def ListChapter(request,StoryID):
+    return render(request,'update.html')
+def Updatechapter(request,ChapterID):
+    return render(request,'updatechapter.html')
+from django.http import HttpResponse
+from core.settings import MEDIA_ROOT
+import os
+
+def image_view(request, image_name):
+    print("ahihi")
+    # Lấy đường dẫn tới thư mục chứa các tệp hình ảnh
+    image_dir = MEDIA_ROOT
+    
+    # Tạo đường dẫn tới tệp hình ảnh cần trả về
+    image_path = os.path.join(image_dir, image_name)
+    print(image_path)
+    # Đọc nội dung của tệp hình ảnh
+    with open(image_path, 'rb') as f:
+        image_data = f.read()
+    
+    # Trả về nội dung của hình ảnh dưới dạng phản hồi HTTP
+    response = HttpResponse(content_type='image/png')
+    response.write(image_data)
+    
+    return response

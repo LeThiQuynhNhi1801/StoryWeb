@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from Home.views import Login,Index,Read,SignUp,Intro,Hot,List,Setting,ChapterFromTo,Search,StoryByAuthor,New,NewChapter
+
+from Home.views import Login,Index,Read,SignUp,Intro,Hot,List,Setting,ChapterFromTo,Search,StoryByAuthor,New,NewChapter,image_view,HistoryBrowser,ListChapter,Updatechapter
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login',Login),
@@ -32,5 +33,9 @@ urlpatterns = [
     path('upstory',StoryByAuthor),
     path('search/<str:key>',Search),
     path('writenew',New),
-    path('writenewchapter',NewChapter)
+    path('historybrowser',HistoryBrowser),
+    path('writenewchapter/<int:StoryID>',NewChapter),
+    path('Home/Media/<str:image_name>',image_view),
+    path('listchapter/<int:StoryID>',ListChapter),
+    path('updatechapter/<int:ChapterID>',Updatechapter)
 ]

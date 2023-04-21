@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import Search,Login,Signup,HotList,StoryByID,Recommend,StoryByIDCategory,ChapterByChapterNumber,ListStory,ListChapterByStoryID,listCategory,listRole,ChapterFromTo,StoryByAuthor,Delete,Historys
-
+from .views import PostNewStory,PostNewChapter,Duyet,HistoryBrowser,Updatechapter,UpdateSave,ListStoryDelete,Delete2
 urlpatterns = [
     path('login',Login.as_view()),
 
@@ -20,6 +20,14 @@ urlpatterns = [
     path('search/<str:key>',Search.as_view()),
     path('upstory',StoryByAuthor.as_view()),
     path('delete/<int:StoryID>',Delete.as_view()),
-    path('history/<int:StoryID>/<int:chapternumber>',Historys.as_view())
-
+    path('delete2/<int:StoryID>',Delete2.as_view()),
+    path('history/<int:StoryID>/<int:chapternumber>',Historys.as_view()),
+    path('writenew',PostNewStory.as_view()),
+    path('writenewchapter/<int:StoryID>',PostNewChapter.as_view()),
+    path('duyet/<int:StoryID>',Duyet.as_view()),
+    path('historybrowser',HistoryBrowser.as_view()),
+    path('listchapter/<int:StoryID>',ListChapterByStoryID.as_view()),
+    path('updatechapter/<int:ChapterID>',Updatechapter.as_view()),
+    path('updatesave/<int:ChapterID>',UpdateSave.as_view()),
+    path('listdelete',ListStoryDelete.as_view())
 ]

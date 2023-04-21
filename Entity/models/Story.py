@@ -8,4 +8,5 @@ class Story(models.Model):
     Status = models.CharField(max_length=225,null=True)
     CoverImage = models.CharField(max_length=225,null=True)
     User = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    
+    Check = models.IntegerField(null=True)
+    DayBrowser = models.DateTimeField(null=True)

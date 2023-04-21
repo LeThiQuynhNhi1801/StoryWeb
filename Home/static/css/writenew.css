@@ -136,13 +136,15 @@
 }
 .container__info__e input{
     width: 100%;
-    
+    background-color: transparent;
     height: 70%;
+    padding-left: 5px;
 }
 #description{
     width: 80%;
     margin-bottom: 10px;
-    
+    background-color: transparent;
+    padding: 7px;
     /* height: 70%; */
 }
 .container__info .container__info__Chapter{
@@ -171,6 +173,7 @@ margin-top: 10px;
 
     width: 90%;
     min-height: 400px;
+    padding: 20px 0px 0px 20px;
 }
 .container__info .container__info__Submit{
     text-align: center;
