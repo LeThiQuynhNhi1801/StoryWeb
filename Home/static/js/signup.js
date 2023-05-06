@@ -13,6 +13,7 @@ function Signup()
     var password = document.getElementById('password').value;
     //  Lấy giá trị trong element input với id là resetPassword
     var resetPassword = document.getElementById('resetPassword').value;
+    var email = document.getElementById('EMAIL').value;
     //laasy element cos id la error__signup
     var errorSignup = document.getElementById('error__signup');
     
@@ -23,7 +24,10 @@ function Signup()
         
     }else if(password===""){
         //truỳen html vào element errorSignup
-        errorSignup.innerHTML="<p>! Vui lòng nhập mật kh</p>";
+        errorSignup.innerHTML="<p>! Vui lòng nhập mật khẩu</p>";
+    }else if(EMAIL===""){
+        //truỳen html vào element errorSignup
+        errorSignup.innerHTML="<p>! Vui lòng nhập địa chỉ email</p>";
     }else if(resetPassword===""){
         //truỳen html vào element errorSignup
         errorSignup.innerHTML="<p>! Vui lòng nhập lại mật khẩu</p>";
@@ -54,13 +58,14 @@ function Signup()
             else
             {
                 //vưới các status khác
-                errorSignup,innerHTML='<p>'+Response['massage']+'</p>';
+                errorSignup.innerHTML='<p>'+Response['massage']+'</p>';
             }
         }         
         //khởi tạo biến dữ liệu
         const userInfo={
                 username:userName,
-                password:password
+                password:password,
+                email:email
         }
         //chuyển sang dạng json để gửI đi trong body của request
         postUser=JSON.stringify(userInfo);

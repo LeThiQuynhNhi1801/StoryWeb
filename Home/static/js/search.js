@@ -10,7 +10,6 @@ const xhttp = new XMLHttpRequest();
             var Response= JSON.parse(ResponseJson)
             if(xhttp.status==200)
             {
-                alert('iiii');
                 var s1 = document.getElementById('categoryName');
                 var s1Html='<div class="body__hot__hotlist"><a href="">KẾT QUẢ TÌM KIẾM</a></div>';
                 var s2 =document.getElementById('listStory');

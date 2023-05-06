@@ -106,12 +106,86 @@
             </div>
         </div>    
     </div>
-    <div id="footer">
+    <div class="rating">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+      <div id="footer">
         <div class="footer__information">
             <p><b>DOCTRUYEN</b>:  Đọc truyện online, đọc truyện chữ, truyện hay. Website luôn cập nhật những bộ truyện mới thuộc các thể loại đặc sắc như truyện tiên hiệp, truyện kiếm hiệp, hay truyện ngôn tình một cách nhanh nhất. Hỗ trợ mọi thiết bị như di động và máy tính bảng.</p>
         </div>
     </div>
-</body>    
+</body> 
+<script>
+    var rating=0;
+    const stars = document.querySelectorAll('.star');
+
+stars.forEach(function(star) {
+  star.addEventListener('click', setclickRating);
+  star.addEventListener('mouseover', setRating);
+  star.addEventListener('mouseout', outRating);
+});
+
+function setclickRating(e) {
+  const value = parseInt(e.target.getAttribute('data-value'));
+  rating=e.target.getAttribute('data-value');
+  const parent = e.target.parentNode;
+  const children = parent.children;
+  for(let i=0; i<children.length; i++) {
+    if(i<value) {
+      children[i].classList.add('active');
+    } else {
+      children[i].classList.remove('active');
+    }
+  }
+  RATING();
+}
+function setRating(e) {
+    const value = parseInt(e.target.getAttribute('data-value'));
+   
+    const parent = e.target.parentNode;
+    const children = parent.children;
+
+    for(let i=0; i<children.length; i++) {
+      if(i<value) {
+        children[i].classList.add('active');
+      } else {
+        children[i].classList.remove('active');
+      }
+    }
+  }
+function outRating(e) {
+    const value = parseInt(e.target.getAttribute('data-value'));
+    const parent = e.target.parentNode;
+    const children = parent.children;
+    
+    for(let i=0; i<children.length; i++) {
+        if(rating-1<i){
+         children[i].classList.remove('active');
+        }
+        else{
+            children[i].classList.add('active');
+        }
+    }
+  }
+function RATING(){
+    const xhttp =new XMLHttpRequest()
+    const postrating={
+        rating:rating    
+    }
+    PostRating=JSON.stringify(postrating);
+    //khai báo phương thức và đường dẫn để request
+    xhttp.open("POST", "/apiV1/history/"+window.location.pathname.substring(6),false);
+    //định dạng gửi đi787
+    xhttp.setRequestHeader("Content-type","application/json")
+    xhttp.setRequestHeader('userID',localStorage.getItem('userID'));
+    //gửi
+    xhttp.send(PostRating); 
+}
+</script>  
 <script src="/static/js/base.js"></script>
 <script src="/static/js/read.js"></script>
 </html>

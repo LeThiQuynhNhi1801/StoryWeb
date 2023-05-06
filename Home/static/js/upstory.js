@@ -10,6 +10,7 @@ function Upstory(){
         var responseJson=xhttp.responseText
         //chuyển về dữ liệU javascript
         var response= JSON.parse(responseJson)
+        console.log(response)
         var s1 = document.getElementById('listStory');
         var s1Html ='';
         for(var i=0;i<response.length;i++){
@@ -22,6 +23,7 @@ function Upstory(){
             }
             s1Html+='<li><a href="/intro/'+response[i]['id']+'">'+response[i]['StoryName']+' :'+response[i]['count']+' chương'+'</a><a href="/writenewchapter/'+response[i]['id']+'">THÊM CHƯƠNG</a><a href="/listchapter/'+response[i]['id']+'">CHỈNH SỬA</a><p>'+a+'</p></li>';
         }
+        console.log(s1Html)
         s1.innerHTML=s1Html;
     }
     else 

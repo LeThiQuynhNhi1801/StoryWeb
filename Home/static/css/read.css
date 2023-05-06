@@ -163,7 +163,7 @@
 }
 
 #container .container__content{
-    margin-top: 140px;
+    margin: 140px 0 0 0;
     text-align: justify;
 }
 #container .container__content p{
@@ -172,6 +172,19 @@
     margin-right: 100px;
     font-size: 24px;
 }
+.rating {
+    font-size: 24px;
+  }
+  
+  .star {
+    color: gray;
+    cursor: pointer;
+  }
+  
+  .star.active {
+    color: gold;
+  }
+  
 #footer{
     float: left;
     display: block;

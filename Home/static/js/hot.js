@@ -13,7 +13,7 @@ const xhttp = new XMLHttpRequest();
                 var s1 = document.getElementById('listStory');
 
                 var s1Html='';
-                for(var i =0;i<10;i++)
+                for(var i =0;i<Response.length;i++)
                 {
                     s1Html+=' <li><a href="/intro/'+Response[i]['id']+'">'+Response[i]['StoryName']+'</a></li>';
                 }
@@ -47,7 +47,7 @@ xhttp.onload = function()
         var s1 = document.getElementById('recommend');
         var s1Html ='<h1>Có thể bạn thích ? </h1>';
         for(var i=0;i<response.length;i++){
-            s1Html+='<a href="'+response[i]['id']+'">'+response[i]['StoryName']+'</a>';
+            s1Html+='<a href="/intro/'+response[i]['id']+'">'+response[i]['StoryName']+'</a>';
         }
         s1.innerHTML=s1Html;
     }
@@ -81,7 +81,7 @@ function HotRCM()
                 var s2Html='<h2>Có thể bạn thích ? </h2>';
                 for(var i =0;i<Response.length;i++)
                 {
-                    s2Html+='<a href="'+Response[i]['id']+'">'+Response[i]['StoryName']+'</a>';
+                    s2Html+='<a href="/intro/'+Response[i]['id']+'">'+Response[i]['StoryName']+'</a>';
                 }
                 s2.innerHTML = s2Html;
             }

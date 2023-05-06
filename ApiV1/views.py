@@ -4,6 +4,9 @@ from django.http import HttpResponse
 import json
 from json import dumps
 import jwt
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+
 import io
 import base64
 from datetime import datetime ,timedelta
@@ -32,38 +35,40 @@ class HotList(APIView):
         for i in histoy:
             print(i)
             storyQuery= Story.objects.get(pk=i['Chapter__Story__pk'])
-            story.append({"id":storyQuery.pk,"StoryName":storyQuery.StoryName})
+            story.append({"id":storyQuery.pk,"StoryName":storyQuery.StoryName,"CoverImage":storyQuery.CoverImage})
         print(story)
         return HttpResponse(json.dumps(story),status=200)
 class Login(APIView):
     def post(self,request):
-        if  'username' not in request.data:
-            return HttpResponse(json.dumps({"massage":"Chưa nhập tên tài khoản"}),status=200)
-        userName = request.data['username']
+        if  'email' not in request.data:
+            return HttpResponse(json.dumps({"massage":"Chưa nhập email"}),status=200)
+        email = request.data['email']
         if  'password' not in request.data:
             return HttpResponse(json.dumps({"massage":"Chưa nhập mật khẩu"}),status=400)    
         password = request.data['password']
         try:
-            user = User.objects.get(UserName=userName,Password=password)
+            user = User.objects.get(Email=email,Password=password)
         except:
             return HttpResponse(json.dumps({"massage":"Sai tài khoản"}),status=401) 
-        
         return HttpResponse(json.dumps({"ID":user.id}),status=201)
 class Signup(APIView):
     def  post(self,request):
         print(request.data)
-        if  'username' not in request.data:
-            return HttpResponse(json.dumps({"massage":"nhap tk di"}),status=400)
-        userName = request.data['username']
+        if  'email' not in request.data:
+            return HttpResponse(json.dumps({"massage":"Vui lòng nhập địa chỉ email"}),status=400)
+        email = request.data['email']
         
         try:
-            User.objects.get(UserName=userName)
-            return HttpResponse(json.dumps({"massage":"usernam da ton tai"}),status=409)
+            User.objects.get(Email=email)
+            return HttpResponse(json.dumps({"massage":"Email này đã được đăng kí"}),status=409)
         except:
             if  'password' not in request.data:
-                return HttpResponse(json.dumps({"massage":"nhap pass di"}),status=400)    
+                return HttpResponse(json.dumps({"massage":"Vui lòng nhập mật khẩu"}),status=400)    
             password = request.data['password']
-            newUser =User(UserName=userName,Password=password)
+            if "username" not in request.data:
+                return HttpResponse(json.dumps({"message":"Vui lòng nhập tên tài khoản"}),status=400)
+            userName= request.data['username']
+            newUser =User(UserName=userName,Password=password,Email=email)
             role=Role.objects.get(pk=2)
             newUser.save()
             newRole=UserRole(Role=role,User=newUser)
@@ -76,24 +81,24 @@ class StoryByID(APIView):
         story={"id":storyQuery.Story.id,"StoryName":storyQuery.Story.StoryName,"Description":storyQuery.Story.Description,"Author":storyQuery.Story.Author,"Source":storyQuery.Story.Source,"coverImage":storyQuery.Story.CoverImage,"statu":storyQuery.Story.Status,"CategoryName":storyQuery.Category.CategoryName}
         print(story)
         return HttpResponse(json.dumps(story),status=200)
-class Recommend(APIView):
-    def get(self,request):
-        userID=request.headers['userID']
-        from django.db import connection
-        with connection.cursor() as cursor:
-            cursor.execute('SELECT entity_category.id,entity_story.id, count(entity_category.id) FROM entity_history join entity_chapter on entity_chapter.id=entity_history.Chapter_id join entity_story on entity_story.id=entity_chapter.Story_id join entity_categorystory on entity_story.id=entity_categorystory.Story_id join entity_category on entity_category.id=entity_categorystory.Category_id where entity_history.User_id='+str(userID)+'  group by entity_category.id,entity_story.id')
-            rows = cursor.fetchall()
-            a = []
-            print(rows)
-            for i in range(len(rows)):
-                a.append(rows[i][0])
-        story=[]
-        try:
-            categoryStorys= CategoryStory.objects.filter(Category__id=max(set(a),key = a.count),Story__Check=1)
-            story= [{"id":categoryStory.Story.id,"StoryName":categoryStory.Story.StoryName,'CoverImage':categoryStory.Story.CoverImage} for categoryStory in categoryStorys ]
-        except:
-            return HttpResponse(json.dumps(story),status=204)
-        return HttpResponse(json.dumps(story[:10]),status=200)
+# class Recommend(APIView):
+#     def get(self,request):
+#         userID=request.headers['userID']
+#         from django.db import connection
+#         with connection.cursor() as cursor:
+#             cursor.execute('SELECT entity_category.id,entity_story.id, count(entity_category.id) FROM entity_history join entity_chapter on entity_chapter.id=entity_history.Chapter_id join entity_story on entity_story.id=entity_chapter.Story_id join entity_categorystory on entity_story.id=entity_categorystory.Story_id join entity_category on entity_category.id=entity_categorystory.Category_id where entity_history.User_id='+str(userID)+'  group by entity_category.id,entity_story.id')
+#             rows = cursor.fetchall()
+#             a = []
+#             print(rows)
+#             for i in range(len(rows)):
+#                 a.append(rows[i][0])
+#         story=[]
+#         try:
+#             categoryStorys= CategoryStory.objects.filter(Category__id=max(set(a),key = a.count),Story__Check=1)
+#             story= [{"id":categoryStory.Story.id,"StoryName":categoryStory.Story.StoryName,'CoverImage':categoryStory.Story.CoverImage} for categoryStory in categoryStorys ]
+#         except:
+#             return HttpResponse(json.dumps(story),status=204)
+#         return HttpResponse(json.dumps(story[:10]),status=200)
 class StoryByIDCategory(APIView):
     def get(self,request,CategoryID):
         storyQuery = CategoryStory.objects.filter(Category__pk=CategoryID,Story__Check=1)
@@ -200,6 +205,14 @@ class Delete(APIView):
         story.DayBrowser = datetime.now()
         story.save()
         return HttpResponse(json.dumps({"massage":'Đã xoá thành công !'}),status=204)
+class Restore(APIView):
+    def get(self,request,StoryID):
+        print(StoryID)
+        story = Story.objects.get(pk=StoryID)
+        story.Check=1
+        story.DayBrowser = datetime.now()
+        story.save()
+        return HttpResponse(json.dumps({"massage":'Đã khôi phục thành công !'}),status=204)    
 class Delete2(APIView):
     def delete(self,request,StoryID):
         story = Story.objects.get(pk=StoryID)
@@ -208,14 +221,21 @@ class Delete2(APIView):
 class Historys(APIView):
     def post(self,request,StoryID,chapternumber):
         userID=request.headers['userID']
+        Rating = 0
+        try:
+            Rating = request.data['rating']
+        except:
+            Rating = 0    
         try:
             print('ahiih')
             historyQuery = History.objects.get(User_id=userID,Chapter__ChapterNumber=chapternumber)
-            return HttpResponse(json.dumps({"massage":'tồn tại'}),status=409)
+            historyQuery.Rating = Rating
+            historyQuery.save()
+            return HttpResponse(json.dumps({"massage":'lưu lại'}),status=409)
         except:
             userid = User.objects.get(pk=userID)
             chapterid = Chapter.objects.get(ChapterNumber=chapternumber,Story_id=StoryID)
-            newHistory = History(Chapter=chapterid,User=userid)
+            newHistory = History(Chapter=chapterid,User=userid,Rating=Rating)
             newHistory.save()
             return HttpResponse(json.dumps({"massage":'lưu lịch sử'}),status=200)
 class ChapterByChapterNumber(APIView):
@@ -255,11 +275,12 @@ class PostNewStory(APIView):
         nameChapter1 = request.data['chapter1']
         contentchapter1 = request.data['content']
         
-        newStory = Story(User=userid,StoryName=storyname,CoverImage=file_path[len(os.path.join(BASE_DIR)):],Description=description,Author=author,Source=source,Status=status,Check=0)
+        newStory = Story(User=userid,StoryName=storyname,CoverImage=file_path[len(os.path.join(BASE_DIR)):],Description=description,Author=author,Source=source,Status=status,Check=0,DayBrowser=datetime.now())
         newStory.save()
         storyid=newStory.pk
-        newChapter = Chapter(ChapterName=nameChapter1,ChapterNumber=1,ContentStory=contentchapter1,Story_id=storyid,DayUpdate=dumps(datetime.now()))
+        newChapter = Chapter(ChapterName=nameChapter1,ChapterNumber=1,ContentStory=contentchapter1,Story_id=storyid,DayUpDate=datetime.now())
         newChapter.save()
+        print(newChapter)
         print(request.data['category'])
         for i in request.data['category']:
             catgory =Category.objects.get(pk=i)
@@ -327,3 +348,147 @@ class ListStoryDelete(APIView):
             story.append({"id":i.id,"StoryName":i.StoryName,"Description":i.Description,"Author":i.Author,"Source":i.Source,"coverImage":i.CoverImage,"statu":i.Status,"daybrowser":str(i.DayBrowser)})
         print(story)
         return HttpResponse(json.dumps(story),status=200)    
+class ReadHistory(APIView):
+    def get(self,request):
+        userID=request.headers['userID']
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT ec.Story_id, MAX(h.id) as max_id, s.StoryName FROM entity_chapter ec JOIN entity_history h ON ec.id = h.Chapter_id JOIN entity_story s ON ec.Story_id = s.id WHERE ec.Story_id IS NOT NULL AND h.User_id = '+str(userID)+' GROUP BY ec.Story_id, s.StoryName order by (-max_id)')
+            rows = cursor.fetchall()
+            a = []
+            for i in range(len(rows)):
+                historyQuery = History.objects.get(pk=rows[i][1])
+                a.append({"ids":historyQuery.Chapter.Story_id,"StoryName":rows[i][2],"ChapterName":historyQuery.Chapter.ChapterName,"ChapterNumber":historyQuery.Chapter.ChapterNumber})
+        return HttpResponse(json.dumps(a),status=200)    
+class Manage(APIView):
+    def get(self,request):
+        user=User.objects.all().order_by('-pk')
+        users = []  
+        for i in user:
+            users.append({"id":i.id,"UserName":i.UserName,"Email":i.Email})
+        return HttpResponse(json.dumps(users),status=200)
+class DeleteUser(APIView):
+    def get(self,request,id):
+        user=User.objects.get(pk=id)
+        user.delete()
+        return HttpResponse(json.dumps({"message":"Đã xoá tài khoản này thành công "}),status=204)
+class UserByIdUser(APIView):
+    def get(self,request):
+        userid = request.headers['userID']
+        userQuery = User.objects.get(pk=userid)
+        user = ({"id":userQuery.id,"UserName":userQuery.UserName,"Password":userQuery.Password,"Email":userQuery.Email})
+        return HttpResponse(json.dumps(user),status=200)            
+class SaveEmail(APIView):
+    def post(self,request):
+        userid = request.headers['userID']
+        userQuery = User.objects.get(pk=userid)
+        try:
+            user = User.objects.get(Email=request.data['email'])
+            return HttpResponse(json.dumps({"message":"Email đã tồn tại"}),status=204)
+        except: 
+            userQuery.Email = request.data['email']
+            userQuery.save()
+            return HttpResponse(json.dumps({"message":"Lưu Email"}),status=200)     
+class SaveUserName(APIView):
+    def post(self,request):
+        userid = request.headers['userID']
+        userQuery = User.objects.get(pk=userid)
+        userQuery.UserName = request.data['userName']
+        userQuery.save()
+        return HttpResponse(json.dumps({"message":"Lưu UserName"}),status=200)             
+class ChangePasswordView(APIView):
+    def post(self, request):
+        userid = request.headers['userID']
+        user = User.objects.get(pk = userid)
+        old_password = request.data['oldpassword']
+        new_password = request.data['newpassword']
+        re_password = request.data['password']
+
+        if user.Password != old_password:
+            return HttpResponse(json.dumps({"message": "Mật khẩu không chính xác"}), status=409)
+        else:
+            if new_password != re_password:
+               return HttpResponse(json.dumps({'message': 'Nhập lại mật khẩu không chính xác'}), status=400) 
+            else:
+                user.Password = new_password
+                user.save()
+                return HttpResponse(json.dumps({'message':'Cập nhật mật khẩu thành công'}), status=200)
+class Recommend(APIView):
+    def get(self,request):    
+        userid = request.headers['userID']
+        userIndex = User.objects.get(pk = userid)
+        users = User.objects.all()
+        chapters = Chapter.objects.all()
+        for i in range(len(users)):
+            if users[i].pk==userIndex.pk:
+                iduserIndex=i
+                break
+        # tao ma tran danh gia    
+        ratings_matrix = np.zeros(( len(users),len(chapters)))   
+        for i,user in enumerate(users):
+            for j, chapter in enumerate(chapters):
+                # get all ratings for this user and chapter
+                try:
+                    rating = History.objects.get(User=user, Chapter=chapter)
+                    ratings_matrix[i, j] = rating.Rating
+                except:
+                    pass
+        # chuẩn hóa ma trận
+        ratings_Matrix = np.zeros(( len(users),len(chapters)))             
+        for i in range(len(users)):
+            sum = 0
+            count = 0
+            for j in range(len(chapters)):
+                if ratings_matrix[i,j] != 0:
+                    sum+=ratings_matrix[i,j]
+                    count+=1
+            if count !=0 :
+                avg = sum/count
+                for k in range(len(chapters)):
+                    if ratings_matrix[i,k] !=0:
+                        ratings_Matrix[i,k] = avg - ratings_matrix[i,k]
+        #tính độ tương đồng
+        cos = cosine_similarity(ratings_Matrix)
+        print(cos)
+
+        #lấy danh sách độ tương đông đồng   của user hiện tại
+        CosinUserIndex = []
+        for i in range(len(users)):
+            CosinUserIndex.append(cos[iduserIndex][i])
+        print(CosinUserIndex)    
+
+        #lấy ra 2 user có độ tương đồng lớn nhất M:vị trí sim:độ tương đồng
+        M = []
+        sim = []
+        for i in range(3):
+            M.append(CosinUserIndex.index(max(CosinUserIndex)))
+            sim.append(CosinUserIndex[CosinUserIndex.index(max(CosinUserIndex))])
+            CosinUserIndex[CosinUserIndex.index(max(CosinUserIndex))]=0
+        RatingUserIndex = []
+
+        #dự đoán rating của user hiện tại bằng trung bình có trọng số 
+        for i in range(len(chapters)):
+            if ratings_matrix[iduserIndex][i]!=0:
+               RatingUserIndex.append(0) 
+            else:
+                b = (sim[1] * ratings_matrix[M[0]][i] + sim[2]*ratings_matrix[M[1]][i])/(sim[2]+sim[1])
+                RatingUserIndex.append(b)
+        #lấy ra các chapter có rating cao nhất
+        sorted_index = sorted(range(len(RatingUserIndex)), key=lambda i: RatingUserIndex[i], reverse=True) 
+        A = []  
+         # Liệt kê film recomend
+        for i in range(len(sorted_index)):     
+            A.append(chapters[sorted_index[i]].pk)
+        id = []
+        story = []    
+        for i in range(len(A)):
+            storyQuery = Chapter.objects.get(pk =A[i])
+            if storyQuery.Story_id not in id:
+                id.append(storyQuery.Story_id)
+                story.append({"id":storyQuery.Story_id,"StoryName":storyQuery.Story.StoryName})
+        return HttpResponse(json.dumps(story),status=200)
+
+
+
+
+        

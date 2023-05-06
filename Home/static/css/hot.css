@@ -115,9 +115,10 @@
     float: left;
     display: block;
     background: url('../images/images(8).jpg')  no-repeat ;
-    background-size: 100vw 100vh ,cover;
+    background-size: 100vw 120vh ,cover;
     min-height: 600px;
     margin-top: 70px;
+    width: 100vw;
     /* width: 1346.47px; */
 }
 #body .body__hot{

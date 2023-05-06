@@ -10,9 +10,9 @@ const xhttp = new XMLHttpRequest();
             {
                 var s = document.getElementById('top');
 
-                var sHtml='<div class="body__hot__hotlist"><a href="hot">TRUYỆN HOT</a></div><div class="body__hot__top"> <a href="intro/'+Response[0]['id']+'"><img src="'+Response[0]['CoverImage']+'" alt=""></a> <a href="intro/'+Response[0]['id']+'">'+Response[0]['StoryName']+
-                '</a></div><div class="body__hot__top"><a href="intro/'+Response[1]['id']+'"><img src="'+Response[1]['CoverImage']+'" alt=""></a><a href="intro/'+Response[1]['id']+'">'+Response[1]['StoryName']+
-                '</a></div><div class="body__hot__top"><a href="intro/'+Response[2]['id']+'"><img src="'+Response[2]['CoverImage']+'" alt=""></a> <a href="intro/'+Response[2]['id']+'">'+Response[2]['StoryName']+'</a></div>';
+                var sHtml='<div class="body__hot__hotlist"><a href="hot">TRUYỆN HOT</a></div><div class="body__hot__top"> <a href="intro/'+Response[1]['id']+'"><img src="'+Response[1]['CoverImage']+'" alt=""></a> <a href="intro/'+Response[1]['id']+'">Top 2: '+Response[1]['StoryName']+
+                '</a></div><div class="body__hot__top"><a href="intro/'+Response[0]['id']+'"><img src="'+Response[0]['CoverImage']+'" alt=""></a><a href="intro/'+Response[0]['id']+'">Top 1: '+Response[0]['StoryName']+
+                '</a></div><div class="body__hot__top"><a href="intro/'+Response[2]['id']+'"><img src="'+Response[2]['CoverImage']+'" alt=""></a> <a href="intro/'+Response[2]['id']+'">Top 3: '+Response[2]['StoryName']+'</a></div>';
                 s.innerHTML = sHtml;
                 
             }
@@ -43,7 +43,7 @@ xhttp.onload = function()
         var s1 = document.getElementById('recommend');
         var s1Html ='<h1>Có thể bạn thích ? </h1>';
         for(var i=0;i<response.length;i++){
-            s1Html+='<a href="intro/'+response[i]['id']+'">'+response[i]['StoryName']+'</a>';
+            s1Html+='<a href="/intro/'+response[i]['id']+'">'+response[i]['StoryName']+'</a>';
         }
         s1.innerHTML=s1Html;
     }
@@ -75,9 +75,9 @@ function HotRCM()
                 var s2 = document.getElementById('recommend');
 
                 var s2Html='';
-                for(var i =0;i<10;i++)
+                for(var i =0;i<Response.length;i++)
                 {
-                    s2Html+='<a href="intro/'+response[i]['id']+'">'+Response[i]['StoryName']+'</a>';
+                    s2Html+='<a href="/intro/'+Response[i]['id']+'">'+Response[i]['StoryName']+'</a>';
                 }
                 s2.innerHTML = s2Html;
             }
@@ -94,14 +94,3 @@ function HotRCM()
         xhttp.send();
 }
 
-// if(localStorage.getItem('userID')==null){
-//     window.location='/login';
-// } else{
-//     userID=null;
-//     var a=document.getElementById('signup');
-//     var a1='<a href="login" oncick="logout()">ĐĂNG XUẤT<i class="fas fa-user"></i></a>';
-//     a.innerHTML=a1;
-// }
-// function logout(){
-//     window.localStorage.removeItem('userID');
-// } 

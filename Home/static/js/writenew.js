@@ -36,7 +36,7 @@ function upnewStory(){
         var xhr = new XMLHttpRequest();
         xhttp.onload = function(){
             if(xhttp.status==200){
-    
+                alert('Đăng thành công')
                window.location='/upstory';
             }
         }

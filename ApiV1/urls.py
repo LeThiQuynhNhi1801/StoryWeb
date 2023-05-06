@@ -1,9 +1,8 @@
 from django.urls import path
 from .views import Search,Login,Signup,HotList,StoryByID,Recommend,StoryByIDCategory,ChapterByChapterNumber,ListStory,ListChapterByStoryID,listCategory,listRole,ChapterFromTo,StoryByAuthor,Delete,Historys
-from .views import PostNewStory,PostNewChapter,Duyet,HistoryBrowser,Updatechapter,UpdateSave,ListStoryDelete,Delete2
+from .views import PostNewStory,PostNewChapter,Duyet,HistoryBrowser,Updatechapter,UpdateSave,ListStoryDelete,Delete2,Restore,ReadHistory,Manage,DeleteUser,UserByIdUser,SaveEmail,SaveUserName,ChangePasswordView
 urlpatterns = [
     path('login',Login.as_view()),
-
     path('signup',Signup.as_view()),
     path('hot',HotList.as_view()),
     path('index',HotList.as_view()),
@@ -29,5 +28,13 @@ urlpatterns = [
     path('listchapter/<int:StoryID>',ListChapterByStoryID.as_view()),
     path('updatechapter/<int:ChapterID>',Updatechapter.as_view()),
     path('updatesave/<int:ChapterID>',UpdateSave.as_view()),
-    path('listdelete',ListStoryDelete.as_view())
+    path('listdelete',ListStoryDelete.as_view()),
+    path('restore/<int:StoryID>',Restore.as_view()),
+    path('readhistory',ReadHistory.as_view()),
+    path('manage',Manage.as_view()),
+    path('deleteuser/<int:id>',DeleteUser.as_view()),
+    path('user',UserByIdUser.as_view()),
+    path('saveusername',SaveUserName.as_view()),
+    path('saveemail',SaveEmail.as_view()),
+    path('savepassword',ChangePasswordView.as_view())
 ]

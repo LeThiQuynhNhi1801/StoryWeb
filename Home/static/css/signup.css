@@ -52,7 +52,8 @@ body{
     padding-left: 40px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    background-color: transparent;
+    border: 1px solid black;
     
 }
 .formLogin__input i{
@@ -61,11 +62,11 @@ body{
     top:8px
 }
 .formLogin__input button{
-    padding: 6px 16px 6px 16px;
+    padding: 6px 10px 6px 10px;
     background-color: rgb(250, 248, 248);
     margin-top: 10px;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
    
 }

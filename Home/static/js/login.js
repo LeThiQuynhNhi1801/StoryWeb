@@ -1,7 +1,7 @@
 function Login()
 {
     const xhttp = new XMLHttpRequest();
-    var userName = document.getElementById('userName').value;
+    var email = document.getElementById('EMAIL').value;
     //  Lấy giá trị trong element input với id là password:
     var password = document.getElementById('password').value;
     xhttp.onload = function()
@@ -24,7 +24,7 @@ function Login()
             }
         }     
         const userInfo={
-            username:userName,
+            email:email,
             password:password
         }
         postUser=JSON.stringify(userInfo);

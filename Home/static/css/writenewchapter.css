@@ -114,6 +114,13 @@
 
 #container{
     margin-top: 90px;
+    float: left;
+    display: block;
+    background: url('../images/images(8).jpg')  no-repeat ;
+    background-size: 100vw 120vh ,cover;
+    width: 100vw;
+    min-height: 600px;
+    margin-top: 70px;
 }
 #container .container__info{
 
@@ -153,6 +160,9 @@
 
 }
 
+.container__info__main h3{
+    margin: 20px 0 0 20px;
+}
 .container__info__main .container__info__right{
     width: 50%;
 }

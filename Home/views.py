@@ -35,6 +35,14 @@ def ListChapter(request,StoryID):
     return render(request,'update.html')
 def Updatechapter(request,ChapterID):
     return render(request,'updatechapter.html')
+def ReadHistory(request):
+    return render(request,'readhistory.html')
+def Manage(request):
+    return render(request,'manage.html')
+def UserByIdUser(request):
+    return render(request,'user.html')
+def ChangePasswordView(request):
+    return render(request,'edit.html')
 from django.http import HttpResponse
 from core.settings import MEDIA_ROOT
 import os

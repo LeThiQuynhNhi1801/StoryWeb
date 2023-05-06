@@ -1,4 +1,3 @@
-
 function PostNewChapter(){
     const xhttp =new XMLHttpRequest()
     var chaptername = document.getElementById('chaptername').value;
@@ -6,6 +5,7 @@ function PostNewChapter(){
     var trangthai = document.getElementById('status').value;
     xhttp.onload = function(){
         if(xhttp.status==200){
+            alert('Thêm chương thành công')
             window.location='/upstory';
         }
     }

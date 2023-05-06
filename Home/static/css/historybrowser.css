@@ -114,13 +114,14 @@
 #container{
     float: left;
     display: block;
-    /* background: url('../images/images(8).jpg')  no-repeat ;
-    background-size: 100vw 100vh ,cover; */
+    background: url('../images/images(8).jpg')  no-repeat ;
+    background-size: 100vw 200vh ,cover;
     min-height: 600px;
     margin-top: 70px;
     width: 100vw;
 }
-#container .container__list{
+#container .container__list h3{
+    margin: 20px 0 0 20px;
 
 }
 #browser{
@@ -152,4 +153,34 @@
     padding: 4px;
 }
 
-
+#container .container__listdelete h3{
+    margin: 20px 0 0 20px;
+}
+/* #browser{
+    text-decoration: none;
+    line-height: 28px;
+    color: #000;
+    margin: 20px;
+    float: right; */
+/* } */
+#container .container__listdelete ul{
+    margin-top: 30px;
+}
+.container__listdelete ul li{
+    margin-left: 70px;
+    min-width: 300px;
+}
+.container__listdelete ul li a{
+    text-decoration: none;
+    min-width: 700px;
+    display: inline-block;
+    line-height: 20px;
+    font-size: 20px;
+    border: 1px solid black;
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+}
+.container__listdelete ul li button{
+    margin: 0px 10px 0px 10px;
+    padding: 4px;
+}

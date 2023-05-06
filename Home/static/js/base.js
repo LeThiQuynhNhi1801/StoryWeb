@@ -37,10 +37,13 @@ function role(){
             
             if (response[0]['idRole']==1){
                 s1+='<li><a href="/setting">DUYỆT TRUYỆN</a></li>';
-                s1+='<li><a href="/upstory">ĐĂNG TRUYỆN</a></li>';
+                s1+='<li><a href="/manage">QUẢN LÍ</a></li>';
+                s1+='<li><a href="/historybrowser">LỊCH SỬ DUYỆT</a></li>';
             }
             else{
                 s1+='<li><a href="/upstory">ĐĂNG TRUYỆN</a></li>';
+                s1+='<li><a href="/readhistory">LỊCH SỬ ĐỌC</a></li>';
+                s1+='<li><a href="/user">TÀI KHOẢN</a></li>';
             }
             s.innerHTML=s1;
         }
