@@ -35,7 +35,7 @@ class HotList(APIView):
         for i in histoy:
             print(i)
             storyQuery= Story.objects.get(pk=i['Chapter__Story__pk'])
-            story.append({"id":storyQuery.pk,"StoryName":storyQuery.StoryName,"CoverImage":storyQuery.CoverImage})
+            story.append({"id":storyQuery.pk,"StoryName":storyQuery.StoryName,"CoverImage":storyQuery.CoverImage,"Author":storyQuery.Author,"User":storyQuery.User.pk,"fullname":storyQuery.User.UserName})
         print(story)
         return HttpResponse(json.dumps(story),status=200)
 class Login(APIView):

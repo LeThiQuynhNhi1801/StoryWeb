@@ -46,6 +46,14 @@ function role(){
                 s1+='<li><a href="/user">TÀI KHOẢN</a></li>';
             }
             s.innerHTML=s1;
+            var s2 = document.getElementById('recommend');
+
+                var s2Html='';
+                for(var i =0;i<Response.length;i++)
+                {
+                    s2Html+='<a href="/intro/'+Response[i]['id']+'">'+Response[i]['StoryName']+'</a>';
+                }
+                s2.innerHTML = s2Html;
         }
  }
      //khai báo phương thức và đường dẫn để request
